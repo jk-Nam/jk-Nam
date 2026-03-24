@@ -80,7 +80,6 @@
 #### 🛠 기술 스택
 - **Backend**: Spring Boot, Spring Security, JPA, QueryDSL
 - **Design Pattern**: Strategy Pattern (심각도 평가 알고리즘 분리)
-- **AI/ML**: OpenAI GPT-4, Google Gemini (팀원 구현)
 - **Database**: PostgreSQL (pg_bigm, 주별 파티셔닝), Redis (Streams, HyperLogLog)
 - **Infrastructure**: Docker, AWS S3, Parquet, Resilience4j, Prometheus, Grafana
 
