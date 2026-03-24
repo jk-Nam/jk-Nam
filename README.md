@@ -33,7 +33,6 @@
 ![Java](https://img.shields.io/badge/Java%2017-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=flat-square&logo=springboot&logoColor=white)
 ![Spring Security](https://img.shields.io/badge/Spring%20Security-6DB33F?style=flat-square&logo=springsecurity&logoColor=white)
-![Spring AI](https://img.shields.io/badge/Spring%20AI-6DB33F?style=flat-square&logo=spring&logoColor=white)
 ![JPA](https://img.shields.io/badge/Spring%20Data%20JPA-6DB33F?style=flat-square&logo=spring&logoColor=white)
 ![QueryDSL](https://img.shields.io/badge/QueryDSL-0769AD?style=flat-square)
 ![C#](https://img.shields.io/badge/C%23-239120?style=flat-square&logo=csharp&logoColor=white)
@@ -87,9 +86,9 @@
 - 멘션 기능 + SSE 실시간 알림 (Spring Events)
 
 #### 🛠 기술 스택
-- **Backend**: Spring Boot, Spring AI, Spring Security, JPA, QueryDSL
+- **Backend**: Spring Boot, Spring Security, JPA, QueryDSL
 - **Design Pattern**: Strategy Pattern (심각도 평가 알고리즘 분리)
-- **AI/ML**: OpenAI GPT-4, Google Gemini, OpenAI Embeddings
+- **AI/ML**: OpenAI GPT-4, Google Gemini (팀원 구현)
 - **Database**: PostgreSQL (pg_bigm, 주별 파티셔닝), Redis (Streams, HyperLogLog)
 - **Infrastructure**: Docker, AWS S3, Parquet, Resilience4j, Prometheus, Grafana
 
