@@ -54,11 +54,9 @@
 
 ## 📌 주요 프로젝트
 
-### 🤖 [DocuMind - AI 기반 로그 분석 & 문서 검색 플랫폼](https://github.com/jk-Nam/Documind) (팀 프로젝트)
+### <img src="images/documind-logo.png" width="24" height="24"/> [DocuMind - AI 기반 로그 분석 & 문서 검색 플랫폼](https://github.com/jk-Nam/Documind) (팀 프로젝트)
 
 게임 서비스의 오류 로그를 실시간으로 수집·분석하고, AI가 이슈를 분류하고 패치노트까지 자동 생성하는 품질 관리 코파일럿
-
-> **담당 도메인**: logprocessor, issue
 
 #### 🎯 내가 구현한 기능
 
@@ -103,11 +101,11 @@
 
 ---
 
-### 🛒 [얼마고 - 중고 물품 경매 플랫폼](https://github.com/jk-Nam/eolmago) (팀 프로젝트)
+### <img src="images/eolmago-logo.png" width="24" height="24"/> [얼마고 - 중고 물품 경매 플랫폼](https://github.com/jk-Nam/eolmago) (팀 프로젝트)
 
 실시간 경매와 안전한 거래를 제공하는 중고 물품 플랫폼
 
-#### 🎯 주요 구현
+#### 🎯 내가 구현한 기능
 **인증/인가 시스템**
 - Spring Security + OAuth2 소셜 로그인 (Google, Kakao, Naver)
 - JWT 기반 토큰 인증 (AccessToken / RefreshToken)
