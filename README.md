@@ -4,14 +4,6 @@
 
 **안정적이고 확장 가능한 시스템을 설계하고, 사용자 경험을 개선하는 것에 집중하는 개발자입니다.**
 
-<p align="center">
-  <a href="https://github.com/jk-Nam">
-    <img src="https://github-readme-stats.vercel.app/api?username=jk-Nam&show_icons=true&theme=tokyonight&hide_border=true" alt="GitHub Stats"/>
-  </a>
-</p>
-
-![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fjk-Nam&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Profile+Views&edge_flat=false)
-
 </div>
 
 ---
@@ -52,6 +44,7 @@
 ### DevOps & Tools
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonaws&logoColor=white)
+![Render](https://img.shields.io/badge/Render-46E3B7?style=flat-square&logo=render&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white)
 ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=flat-square&logo=prometheus&logoColor=white)
 ![Grafana](https://img.shields.io/badge/Grafana-F46800?style=flat-square&logo=grafana&logoColor=white)
@@ -144,16 +137,6 @@
 - **로그인 세션 이탈 문제**: Thymeleaf 렌더링 실패 시 쿠키 손실 → SecurityContext 갱신 로직 개선
 - **프로필 이미지 캐싱 문제**: 브라우저 캐시로 인한 미반영 → 타임스탬프 쿼리 파라미터 적용
 - **보안 취약점 11건 수정**: AI 코드 리뷰(Greptile) 기반 인증 우회, 쿠키 보안, null 체크 등 개선
-
----
-
-## 📊 GitHub Stats
-
-<div align="center">
-
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=jk-Nam&layout=compact&theme=tokyonight&hide_border=true)
-
-</div>
 
 ---
 
