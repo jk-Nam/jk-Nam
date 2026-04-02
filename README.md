@@ -94,6 +94,11 @@
   - Redis TTL(7일)과 PostgreSQL 영구 저장소 간 생명주기 불일치 해결
   - 계산 범위를 최근 7일로 제한하여 정합성 보장
 
+- **로그 처리 성능 병목 해결 (k6 부하 테스트)**
+  - 문제: 단건 INSERT로 인한 에러율 31.8%, RPS 100 (목표의 33%)
+  - 해결: Batch Insert + Backpressure 구현, constant-arrival-rate 방식으로 정확한 측정
+  - 결과: RPS 3배 향상 (100 → 300), 에러율 완전 해소 (31.8% → 0%), p95 latency 690배 개선 (9,997ms → 14ms)
+  - DB 쿼리 수 99.8% 감소 (54,000회 → 116회)
 ---
 
 ### <img src="images/eolmago-logo.png" width="32" height="32"/> [얼마고 - 중고 물품 경매 플랫폼](https://github.com/jk-Nam/eolmago) (팀 프로젝트)
