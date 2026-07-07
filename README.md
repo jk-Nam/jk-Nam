@@ -50,7 +50,7 @@
 
 ## 📌 주요 프로젝트
 
-### <img src="images/documind-logo.png" width="32" height="32"/> [DocuMind - AI 기반 로그 분석 & 문서 검색 플랫폼](https://github.com/jk-Nam/Documind) (팀 프로젝트)
+### <img src="images/documind-logo.png" width="32" height="32"/> [DocuMind - AI 기반 로그 분석 & 문서 검색 플랫폼](https://github.com/jk-Nam/Documind/tree/dev) (팀 프로젝트)
 
 게임 서비스의 오류 로그를 실시간으로 수집·분석하고, 자동 이슈를 분류하고 패치노트까지 자동 생성하는 품질 관리 코파일럿
 
