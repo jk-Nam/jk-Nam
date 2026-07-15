@@ -1,9 +1,11 @@
 <div align="center">
 
-# 안녕하세요! 풀스택 개발자로 성장하고 있는 남준구입니다.
+# 안녕하세요! 백엔드를 기반으로 풀스택 개발자로 성장하고 있는 남준구입니다.
 
-**비즈니스를 이해하고 기술로 문제를 해결하는 개발자입니다.  
-경영학을 전공했고 IT 업계 경험을 바탕으로 백엔드와 프론트엔드를 아우르며 사용자와 비즈니스 가치를 함께 고민합니다.**
+**비즈니스를 이해하고 기술로 문제를 해결하는 개발자입니다.
+경영학을 전공했고 IT 업계 경험을 바탕으로 사용자와 비즈니스 가치를 함께 고민합니다.
+
+현재는 Spring 기반 백엔드 개발 경험을 바탕으로 React와 TypeScript를 학습하며 프론트엔드 역량을 확장하고 있습니다.**
 
 </div>
 
@@ -17,6 +19,7 @@
 - 다양한 직군과 원활하게 소통하며 협업합니다
 - 새로운 기술을 학습하고 적용하는 것을 즐깁니다
 - 코드 리뷰와 문서화를 통해 팀의 코드 품질 향상에 기여합니다
+- Spring Boot 기반 백엔드 경험을 바탕으로 React와 TypeScript를 학습하며 풀스택 역량을 키우고 있습니다
 
 ---
 
@@ -43,9 +46,6 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
 ![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)
 ![Redis Streams](https://img.shields.io/badge/Redis%20Streams-DC382D?style=flat-square&logo=redis&logoColor=white)
-
-### Game Development
-![Unity](https://img.shields.io/badge/Unity-000000?style=flat-square&logo=unity&logoColor=white)
 
 ### DevOps & Tools
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
