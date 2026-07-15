@@ -1,9 +1,9 @@
 <div align="center">
 
-# 안녕하세요! 백엔드 개발자로 성장하고 있는 남준구입니다.
+# 안녕하세요! 풀스택 개발자로 성장하고 있는 남준구입니다.
 
-**비즈니스를 이해하고 기술로 해결하는 개발자입니다.
-경영학을 전공했고 IT 업계 경험을 통해 사용자와 비즈니스 가치를 함께 고민합니다.**
+**비즈니스를 이해하고 기술로 문제를 해결하는 개발자입니다.  
+경영학을 전공했고 IT 업계 경험을 바탕으로 백엔드와 프론트엔드를 아우르며 사용자와 비즈니스 가치를 함께 고민합니다.**
 
 </div>
 
@@ -21,6 +21,15 @@
 ---
 
 ## 🛠 Tech Stack
+
+### Frontend
+
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
 
 ### Backend & Framework
 ![Java](https://img.shields.io/badge/Java%2017-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
