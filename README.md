@@ -88,11 +88,18 @@
 - **Database**: PostgreSQL (pg_bigm, 주별 파티셔닝), Redis (Streams, HyperLogLog)
 - **Infrastructure**: Docker, AWS S3, Parquet, Resilience4j, Prometheus, Grafana
 
+#### 🛠 AI 연동 & 비정형 데이터 수집 파이프라인
+- Python 기반 웹 크롤링: 외부 기술 문서 및 패치노트 수집·정제 파이프라인 구축
+- LLM (Prompt Engineering) 기반 산출물 자동화: 수집된 비정형 데이터 및 이슈 로그 기반 API 명세서, 시스템 아키텍처, 패치노트, 매뉴얼 자동 생성
+- AI 검증 체계 구축: AI 환각(Hallucination) 방지를 위한 로직 정합성 검증 및 PR 연동 AI 코드 리뷰(Greptile, Qodo) 체계 적용
+
 #### 📊 성과
 - Redis Streams 피크 시 PEL 크기: **10,000+ → 100 이하** 개선
 - Batch Insert: 단건 대비 **10배 이상 처리 속도 향상**
 - SHA-256 핑거프린트: 이슈 중복 **완벽 방지**
 - 전략 패턴: **확장 가능한 심각도 평가 시스템** 구축 (신규 전략 추가 시 기존 코드 수정 불필요)
+- AI 기반 기술 산출물(API 명세서, 패치노트 등) 자동 생성 파이프라인 구축으로 문서화 오버헤드 대폭 축소
+- Python 크롤링 및 LLM 연동을 통해 산재된 비정형 데이터를 정형화된 기술 자산으로 변환
 
 #### 🐛 주요 트러블슈팅
 - **로그 TTL 정책 수립과 스토리지 Tier 결정**
