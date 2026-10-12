@@ -85,8 +85,45 @@
 - 이슈 생명주기 관리 + JPA Auditing 기반 변경 이력 추적
 - 멘션 기능 + SSE 실시간 알림 (Spring Events)
 
+### 🏛️ Architecture Decisions & Technical Trade-offs
+
+#### 1. 메시징 브로커 선정: Kafka vs Redis Streams
+- **Context:** 대규모 로그 수집 파이프라인 구축 시 대용량 분산 환경의 표준인 Apache Kafka 도입을 검토했습니다.
+- **Trade-off Analysis:** 
+  - **Kafka 검토:** 실무 표준 아키텍처로 확장성이 뛰어나나, 학습 곡선과 인프라 구축 오버헤드 및 개발 기간의 제한을 고려했습니다.
+  - **Redis Streams 선택:** 팀원의 낮은 학습 곡선, 별도의 무거운 인프라 구성 없이 Consumer Group 기반 비동기 메시징 처리가 가능합니다.
+- **Decision:** 서비스 런칭 전 MVP 구현 목적과 개발 속도를 최우선으로 고려하여 Redis Streams를 채택했습니다. 결과적으로 불필요한 인프라 복잡도를 낮추면서도 PEL 관리를 통해 안정적으로 부하를 제어했습니다.
+
+#### 2. 대량 로그 저장을 위한 Batch Insert 선제적 도입
+- **Context:** 대규모 로그 수집 특성상 단건 INSERT 방식은 지속적인 DB Connection 생성과 Network I/O 오버헤드로 병목을 유발합니다.
+- **Trade-off Analysis:** 시스템 초기 설계 단계부터 성능 최적화를 최우선 목표로 설정했습니다.
+- **Decision:** 단건 저장 대신 `JdbcTemplate Batch Insert`를 적용하여 쿼리 전송 횟수를 대폭 줄이고 I/O 비용을 최소화하도록 구조화했습니다.
+- **Result:** DB 쿼리 수 99.8% 감소 및 부하 환경 처리량(RPS) 유의미한 향상 달성.
+
+#### 3. 시스템 안정성을 위한 Circuit Breaker (Resilience4j) 도입
+- **Context:** 로그 처리기나 외부 의존 서비스 장애 발생 시 장애가 전체 시스템으로 전파될 위험이 존재합니다.
+- **Trade-off Analysis:** 개별 모듈의 장애가 메인 시스템 가용성에 영향을 주지 않도록 격리 장치가 필요했습니다.
+- **Decision:** Resilience4j의 Circuit Breaker를 적용하여 연쇄 장애를 차단하고, DLQ 및 재시도 정책을 결합하여 가용성을 확보했습니다.
+- **Result:** 외부/내부 장애 발생 시 메인 시스템으로의 전파를 차단하여 서비스 가용성 100% 유지.
+
+#### 4. 스토리지 비용 절감을 위한 계층형 스토리지 (Hot/Warm/Cold) & S3 도입
+- **Context:** 모든 로그 데이터를 고성능 RDBMS에 영구 보관하는 것은 인프라 비용 급증과 검색 성능 저하를 초래합니다.
+- **Trade-off Analysis:** 데이터의 시간 경과에 따른 조회 빈도 차이에 주목했습니다.
+  - **Hot Tier:** 빠른 조회가 필요한 최신 데이터 (PostgreSQL)
+  - **Warm Tier:** 주별 파티셔닝 기반 관리 (PostgreSQL)
+  - **Cold Tier:** 장기 보관 및 분석용 데이터 (AWS S3 + Parquet)
+- **Decision:** RDBMS의 용량 부담과 인프라 유지 비용을 절감하면서 장기 로그 데이터의 보관성을 확보했습니다.
+
+#### 5. 실시간 알림을 위한 SSE (Server-Sent Events) 채널 선택
+- **Context:** 이슈 발생 및 멘션 시 사용자에게 실시간 알림을 전달할 통신 프로토콜 선정이 필요했습니다.
+- **Trade-off Analysis:**
+  - **WebSocket:** 양방향 통신 지원, 핸드셰이크 오버헤드가 크고 복잡함.
+  - **SSE:** 단방향(서버→클라이언트) 알림에 특화, HTTP 기반으로 동작하여 서버 리소스 소모가 적음.
+- **Decision:** 양방향 소통이 불필요한 단방향 알림 구조에는 WebSocket보다 SSE가 효율적이라 판단하여 채택했습니다.
+- **Result:** 불필요한 커넥션 오버헤드 없이 가볍고 안정적인 실시간 알림 체계 구축.
+
 #### 🛠 기술 스택
-- **Backend**: Spring Boot, Spring Security, JPA, QueryDSL
+- **Backend**: Spring Boot, Spring Security, JPA, QueryDSL, Python
 - **Design Pattern**: Strategy Pattern (심각도 평가 알고리즘 분리)
 - **Database**: PostgreSQL (pg_bigm, 주별 파티셔닝), Redis (Streams, HyperLogLog)
 - **Infrastructure**: Docker, AWS S3, Parquet, Resilience4j, Prometheus, Grafana
