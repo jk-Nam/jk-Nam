@@ -182,6 +182,32 @@
 - QueryDSL 기반 동적 쿼리 (사용자/신고/제재 이력 필터링)
 - @PreAuthorize 기반 ADMIN 권한 검증
 
+### 🏛️ Architecture Decisions & Technical Trade-offs
+
+#### 1. OAuth2 전용 소셜 로그인 채널 채택 (자체 회원가입 미지원)
+- **Context:** 사용자 회원가입 및 인증 체계 구축 시 자체 ID/PW 로그인 기능 지원 여부를 검토했습니다.
+- **Trade-off Analysis:**
+  - **자체 회원가입:** 직접적인 비밀번호 및 개인정보 보관으로 인한 데이터 유출 위험과 관리 오버헤드가 발생합니다.
+  - **OAuth2 소셜 로그인:** 사용자 진입 장벽을 낮추는 최신 UX 트렌드이며, 민감 개인정보 직접 보유에 따른 보안 리스크를 외부 인증 제공자(Google, Kakao, Naver)로 이관할 수 있습니다.
+- **Decision:** 데이터 보안 리스크 예방과 UX 편의성을 최우선으로 고려하여 자체 회원가입 대신 Spring Security + OAuth2 기반 소셜 로그인 단일 체계를 채택했습니다.
+
+#### 2. 서버 확장성(Scale-out)을 고려한 Stateless 분산 인증 구조 (JWT)
+- **Context:** 향후 트래픽 증가에 따른 서버 확장 시 전통적인 Stateful 세션 방식은 서버 간 세션 불일치 문제를 유발합니다.
+- **Trade-off Analysis:**
+  - **Stateful Session:** 서버 메모리에 세션을 보관하여 무효화가 용이하나, 다중 서버 환경에서 Redis Session Clustering 등 추가적인 인프라 구성이 필요합니다.
+  - **Stateless JWT:** 서버에 상태를 저장하지 않아 Scale-out에 용이하지만, 발급된 토큰의 즉시 무효화가 어렵고 탈취 위험이 존재합니다.
+- **Decision:** 서버 확장성을 보장하기 위해 Stateless 기반 JWT(AccessToken / RefreshToken) 체계를 채택하고, 탈취 리스크 보완을 위해 RTR(Refresh Token Rotation) 방식을 결합했습니다.
+
+#### 3. Redis 기반 Refresh Token 관리 및 Rotation
+- **Context:** JWT 탈취 위험에 대응하고, 만료된 토큰의 자동 정리를 위한 영속성 스토리지 선정이 필요했습니다.
+- **Trade-off Analysis:** RDBMS 조회 방식은 토큰 검증 시마다 DB I/O 부담을 유발합니다.
+- **Decision:** Redis의 TTL 기능을 활용해 토큰 만료 주기를 자동으로 관리하고, Refresh Token 재발급 시 기존 토큰을 무효화하는 RTR 정책을 구현하여 보안성과 인프라 효율성을 동시에 확보했습니다.
+
+#### 4. 프론트엔드-백엔드 이중 권한 검증 (Defense in Depth)
+- **Context:** 페이지 접근 및 주요 기능 수행 시 인가 누수로 인한 무단 접근 위험이 존재했습니다.
+- **Trade-off Analysis:** 프론트엔드 단독 검증은 클라이언트 측 스크립트 변조에 취약하며, 백엔드 단독 검증은 불필요한 API 요청을 프론트엔드에서 1차 차단하지 못합니다.
+- **Decision:** 프론트엔드(유저 등급/권한별 렌더링 차단)와 백엔드(Spring Security @PreAuthorize 및 Role 기반 검증) 모두에서 이중 인가 검증 체계를 구현하여 보안 수준을 향상시켰습니다.
+
 #### 🛠 기술 스택
 - **Backend**: Spring Boot, Spring Security, JPA, QueryDSL
 - **Authentication**: JWT, OAuth2, CoolSMS
